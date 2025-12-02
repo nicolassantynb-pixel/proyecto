@@ -622,7 +622,46 @@
         const id = document.getElementById('editId').value;
         const name = document.getElementById('productName').value.trim();
         const description = document.getElementById('productDescription').value.trim();
-        const price = parseFloat(document.getElementById('productPrice').value);
+      function saveProduct(e) {
+    e.preventDefault();
+
+    const id = document.getElementById('editId').value;
+    const name = document.getElementById('productName').value.trim();
+    const description = document.getElementById('productDescription').value.trim();
+    const price = Number.parseFloat(document.getElementById('productPrice').value);
+    const category = document.getElementById('productCategory').value;
+    const stock = Number.parseInt(document.getElementById('productStock').value, 10);
+
+    if (!name || !description || !category || price <= 0 || stock < 0) {
+        alert('⚠ Por favor completa todos los campos correctamente');
+        return;
+    }
+
+    if (id) {
+        const prod = products.find(p => p.id === Number.parseInt(id, 10));
+        prod.name = name;
+        prod.description = description;
+        prod.price = price;
+        prod.category = category;
+        prod.stock = stock;
+
+        alert(`✔ Producto "${name}" actualizado`);
+    } else {
+        const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
+
+        products.push({
+            id: newId,
+            name,
+            description,
+            price,
+            category,
+            stock
+        });
+
+        alert(`✔ Producto "${name}" agregado`);
+    }
+}
+
         const category = document.getElementById('productCategory').value;
         const stock = parseInt(document.getElementById('productStock').value);
 
