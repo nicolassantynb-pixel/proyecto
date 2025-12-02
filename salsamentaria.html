@@ -318,7 +318,13 @@
         <!-- Página Tienda -->
         <div id="tienda" class="page active">
             <div class="filters">
-                <label><strong>Filtrar por categoría:</strong></label>
+               <div class="filters">
+       <label for="categoryFilter"><strong>Filtrar por categoría:</strong></label>
+      <select id="categoryFilter" onchange="filterProducts()">
+     <option value="all">Todas las categorías</option>
+    </select>
+</div>
+
                 <select id="categoryFilter" onchange="filterProducts()">
                     <option value="all">Todas las categorías</option>
                 </select>
